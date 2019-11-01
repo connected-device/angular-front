@@ -3,8 +3,10 @@
     <a href="#" class="logo">CoolApp</a>
     <nav>
       <ul>
-        <li><a href="#" routerLink="/">Home</a></li>
-        <li><a href="#" routerLink="/list">Breweries</a></li>
+        <li><a href="#" routerLink="/" [routerLinkActive]="['is-active']"
+            [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li><a href="#" routerLink="/list" [routerLinkActive]="['is-active']"
+            [routerLinkActiveOptions]="{exact: true}">Breweries</a></li>
       </ul>
     </nav>
   </div>

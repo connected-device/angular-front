@@ -44,6 +44,10 @@ header {
     }
 }
 
+.is-active {
+    background: darken($primary, 10%);
+}
+
 h1 {
     margin-top: 2em;
 }
