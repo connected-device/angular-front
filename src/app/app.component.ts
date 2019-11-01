@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     console.log('ngOnInit()');
     // this.router.navigateByUrl('/list');
 
-    timer(3000, 2000)
+    timer(300000, 2000)
       .subscribe(x => {
         if (x % 2 == 0) {
           console.log('timer: even ' + x);
