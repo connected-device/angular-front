@@ -22,18 +22,21 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     // throw new Error("Method not implemented.");
     console.log('ngOnInit()');
-    // this.router.navigateByUrl('/list');
+    this.router.navigateByUrl('/users-add');
 
-    timer(300000, 2000)
-      .subscribe(x => {
-        if (x % 2 == 0) {
-          console.log('timer: even ' + x);
-          this.router.navigateByUrl('/');
-        } else {
-          console.log('timer: odd ' + x);
-          this.router.navigateByUrl('/list');
-        }
-      })
+    // timer(3000000, 2000)
+    //   .subscribe(x => {
+    //     if (x % 3 == 0) {
+    //       console.log('timer: ' + x);
+    //       this.router.navigateByUrl('/');
+    //     } else if (x % 3 == 1) {
+    //       console.log('timer: ' + x);
+    //       this.router.navigateByUrl('/list');
+    //     } else {
+    //       console.log('timer: ' + x);
+    //       this.router.navigateByUrl('/users');
+    //     }
+    //   })
 
 
 

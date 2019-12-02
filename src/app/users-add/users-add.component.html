@@ -1,0 +1,52 @@
+<h2>Add user</h2>
+<p>form.touched : {{ form.touched }}</p>
+<p>userId.touched : {{ userId.touched }}</p>
+
+<!-- <p>form?.userId?.touched : {{ form?.userId?.touched }}</p> -->
+
+<p>form.errors : {{form.errors}}</p>
+<p>form.get('userId').errors : {{form.get('userId').errors}}</p>
+<p>form.get('userId').errors?.required : {{form.get('userId').errors?.required}}</p>
+<p>form.dirty : {{form.dirty}}</p>
+<p>form.touched : {{form.touched}}</p>
+<!-- {{form.get('userId').errors | json}} -->
+
+
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+        <div class="form-group">
+                <label for="userId">User ID</label>
+                <input type="text" class="form-control" id="userId" formControlName="userId" #userId
+                        aria-describedby="emailHelp" placeholder="Enter User ID">
+                <div style="color: red" *ngIf="form.get('userId').errors?.userIdExists">User ID Exisits</div>
+
+        </div>
+        <div class="form-group">
+                <label for="password">Password</label>
+                <input type="text" class="form-control" id="password" formControlName="password"
+                        aria-describedby="passwordHelp" placeholder="Enter Password">
+        </div>
+        <div class="form-group">
+                <label for="userName">User Name</label>
+                <input type="text" class="form-control" id="userName" formControlName="userName"
+                        aria-describedby="userNameHelp" placeholder="Enter userName">
+        </div>
+        <div class="form-group">
+                <label for="group">Group</label>
+                <input type="text" class="form-control" id="group" formControlName="group" aria-describedby="groupHelp"
+                        placeholder="Enter group">
+        </div>
+        <div class="form-group">
+                <label for="role">Role</label>
+                <input type="text" class="form-control" id="role" formControlName="role" aria-describedby="roleHelp"
+                        placeholder="Enter role">
+        </div>
+        <div class="clearfix">
+                <div class="float-right">
+                        <button class="btn btn-primary mr-1" type="submit"
+                                [disabled]="form.invalid || form.pending">Submit
+                                <span *ngIf="form.get('userId').pending"> (searching)</span>
+                        </button>
+                        <button class="btn btn-secondary" routerLink="/users">list</button>
+                </div>
+        </div>
+</form>
