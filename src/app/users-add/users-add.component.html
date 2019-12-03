@@ -1,6 +1,7 @@
 <h2>Add user</h2>
 <p>form.touched : {{ form.touched }}</p>
 <p>userId.touched : {{ userId.touched }}</p>
+<p>userId.invalid : {{ userId.invalid }}</p>
 
 <!-- <p>form?.userId?.touched : {{ form?.userId?.touched }}</p> -->
 
@@ -13,12 +14,18 @@
 
 
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+        <div>
+                <!-- <h3>userName</h3>
+                {{ userName | json }} -->
+                <!-- <h3>userId</h3>
+                {{ userId }} -->
+        </div>
         <div class="form-group">
                 <label for="userId">User ID</label>
                 <input type="text" class="form-control" id="userId" formControlName="userId" #userId
                         aria-describedby="emailHelp" placeholder="Enter User ID">
                 <div style="color: red" *ngIf="form.get('userId').errors?.userIdExists">User ID Exisits</div>
-
+                <div style="color: red" *ngIf="userId.invalid">***********</div>
         </div>
         <div class="form-group">
                 <label for="password">Password</label>

@@ -41,6 +41,15 @@ export class UsersAddComponent {
     }, { updateOn: 'change' }); // blur, change, submit
   }
 
+  // userId
+  get userId() {
+    return this.form.get('userId');
+  }
+
+  get userName() {
+    return this.form.get('userName');
+  }
+
   onSubmit(data) {
     // Process checkout data here
     this._http.postUsers(data).subscribe(data => {

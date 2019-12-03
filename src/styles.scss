@@ -11,6 +11,16 @@ body {
     overflow-y:scroll;
 }
 
+.container {
+    padding: 0px;
+    }
+    
+    nav.navbar {
+      width: inherit;
+      left: 50%;
+      transform: translateX(-50%);  
+    }
+
 // .container {
 //     width: 80%;
 //     margin: 0 auto;
