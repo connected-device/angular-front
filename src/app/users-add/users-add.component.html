@@ -1,41 +1,39 @@
 <h2>Add user</h2>
-<p>form.touched : {{ form.touched }}</p>
-<p>userId.touched : {{ userId.touched }}</p>
-<p>userId.invalid : {{ userId.invalid }}</p>
-
-<!-- <p>form?.userId?.touched : {{ form?.userId?.touched }}</p> -->
-
-<p>form.errors : {{form.errors}}</p>
-<p>form.get('userId').errors : {{form.get('userId').errors}}</p>
-<p>form.get('userId').errors?.required : {{form.get('userId').errors?.required}}</p>
-<p>form.dirty : {{form.dirty}}</p>
-<p>form.touched : {{form.touched}}</p>
-<!-- {{form.get('userId').errors | json}} -->
-
 
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-        <div>
-                <!-- <h3>userName</h3>
-                {{ userName | json }} -->
-                <!-- <h3>userId</h3>
-                {{ userId }} -->
-        </div>
         <div class="form-group">
                 <label for="userId">User ID</label>
-                <input type="text" class="form-control" id="userId" formControlName="userId" #userId
+                <input type="text" class="form-control  is-invalid" id="userId" formControlName="userId"
                         aria-describedby="emailHelp" placeholder="Enter User ID">
-                <div style="color: red" *ngIf="form.get('userId').errors?.userIdExists">User ID Exisits</div>
-                <div style="color: red" *ngIf="userId.invalid">***********</div>
+                <div *ngIf="userId.invalid && (userId.dirty || userId.touched)">
+                        <div *ngIf="userId.errors.userIdExists">User ID Exisits </div>
+                        <div *ngIf="userId.errors.required">
+                                userId is required.
+                        </div>
+                        <div class="invalid-feedback">
+                                Please choose a username.
+                        </div>
+                </div>
         </div>
         <div class="form-group">
                 <label for="password">Password</label>
                 <input type="text" class="form-control" id="password" formControlName="password"
                         aria-describedby="passwordHelp" placeholder="Enter Password">
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+                        <div *ngIf="password.errors.required">
+                                password is required.
+                        </div>
+                </div>
         </div>
         <div class="form-group">
                 <label for="userName">User Name</label>
                 <input type="text" class="form-control" id="userName" formControlName="userName"
                         aria-describedby="userNameHelp" placeholder="Enter userName">
+                <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="text-danger">
+                        <div *ngIf="userName.errors.required">
+                                userName is required.
+                        </div>
+                </div>
         </div>
         <div class="form-group">
                 <label for="group">Group</label>

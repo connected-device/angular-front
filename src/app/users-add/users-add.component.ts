@@ -1,20 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-users-add',
-//   templateUrl: './users-add.component.html',
-//   styleUrls: ['./users-add.component.scss']
-// })
-// export class UsersAddComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-
-// }
-
-
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -26,7 +9,11 @@ import { UserValidators } from '../helpers/user-validator';
 @Component({
   selector: 'app-users-add',
   templateUrl: './users-add.component.html',
-  styleUrls: ['./users-add.component.scss']
+  // styleUrls: ['./users-add.component.scss']
+  styles: [
+    'input.ng-touched.ng-invalid {border-color: red}',
+    'input.ng-dirty.ng-invalid {border-color: red}'
+  ]
 })
 export class UsersAddComponent {
   public form: FormGroup;
@@ -41,7 +28,6 @@ export class UsersAddComponent {
     }, { updateOn: 'change' }); // blur, change, submit
   }
 
-  // userId
   get userId() {
     return this.form.get('userId');
   }
@@ -50,15 +36,14 @@ export class UsersAddComponent {
     return this.form.get('userName');
   }
 
+  get password() {
+    return this.form.get('password');
+  }
+
   onSubmit(data) {
     // Process checkout data here
     this._http.postUsers(data).subscribe(data => {
       this.router.navigate(['/users']);
     })
-  }
-
-  goBack(pagename: string, parameter: string) {
-    // this.router.navigate([pagename, parameter]);
-    this.router.navigate(['/users']);
   }
 }
