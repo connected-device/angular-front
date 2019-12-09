@@ -1,28 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { timer } from 'rxjs';
-import { take } from 'rxjs/operators';
-
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { timer } from "rxjs";
+import { take } from "rxjs/operators";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit {
   /**
    *
    */
+
+  public form: FormGroup;
+
   constructor(private router: Router) {
     // super();
-
-    console.log('constructor()');
+    this.form = new FormGroup(
+      {
+        companyId: new FormControl(null)
+      },
+      { updateOn: "change" }
+    ); // blur, change, submit
   }
 
   ngOnInit(): void {
     // throw new Error("Method not implemented.");
-    console.log('ngOnInit()');
-    this.router.navigateByUrl('/users-add');
+    this.router.navigateByUrl("/users-add");
 
     // timer(3000000, 2000)
     //   .subscribe(x => {
@@ -37,9 +43,6 @@ export class AppComponent implements OnInit {
     //       this.router.navigateByUrl('/users');
     //     }
     //   })
-
-
-
   }
-  title = 'angular-client';
+  title = "angular-client";
 }

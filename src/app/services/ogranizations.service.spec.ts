@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HttpService } from './http.service';
+import { OgranizationsService } from './ogranizations.service';
 
-describe('HttpService', () => {
+describe('OgranizationsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: HttpService = TestBed.get(HttpService);
+    const service: OgranizationsService = TestBed.get(OgranizationsService);
     expect(service).toBeTruthy();
   });
 });
