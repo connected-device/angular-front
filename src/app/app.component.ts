@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     // super();
     this.form = new FormGroup(
       {
-        companyId: new FormControl(null)
+        organizationId: new FormControl(null)
       },
       { updateOn: "change" }
     ); // blur, change, submit

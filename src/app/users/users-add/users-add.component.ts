@@ -27,15 +27,15 @@ export class UsersAddComponent {
           this.service.userValidator()
         ),
         password: new FormControl(
-          environment.devInputValue,
+          environment.devInputString,
           Validators.required
         ),
         userName: new FormControl(
-          environment.devInputValue,
+          environment.devInputString,
           Validators.required
         ),
-        group: new FormControl(environment.devInputValue, Validators.required),
-        role: new FormControl(environment.devInputValue, Validators.required)
+        group: new FormControl(environment.devInputString, Validators.required),
+        role: new FormControl(environment.devInputString, Validators.required)
       },
       { updateOn: "change" }
     ); // blur, change, submit
