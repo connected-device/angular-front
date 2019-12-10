@@ -27,8 +27,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // throw new Error("Method not implemented.");
-    this.router.navigateByUrl("/users-add");
+    this.router.navigateByUrl("/users-edit/5dee52d07f7dc47a3a48f41e");
 
     // timer(3000000, 2000)
     //   .subscribe(x => {

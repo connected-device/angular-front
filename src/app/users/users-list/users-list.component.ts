@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { UsersService } from "../../services/users.service";
+import { UsersService } from "../users-services/users.service";
 
 @Component({
   selector: "app-list",
@@ -22,8 +22,20 @@ export class UsersListComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.userService.deleteUser(id).subscribe(data => {
-      this.list();
-    });
+    if (confirm("Are you sure to delete ?")) {
+      this.userService.deleteUser(id).subscribe(data => {
+        this.list();
+      });
+    }
   }
+  /**
+ 
+
+clickMethod(name: string) {
+  if(confirm("Are you sure to delete "+name)) {
+    console.log("Implement delete functionality here");
+  }
+}
+
+  */
 }

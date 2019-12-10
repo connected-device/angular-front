@@ -1,1 +1,126 @@
-<p>users-edit works!</p>
+<h2>Edit user</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div class="form-group">
+    <label for="userId">User ID</label>
+    <input
+      type="text"
+      class="form-control"
+      [ngClass]="
+        userId.invalid && (userId.dirty || userId.touched) ? 'is-invalid' : ''
+      "
+      id="userId"
+      formControlName="userId"
+      aria-describedby="emailHelp"
+      placeholder="Enter User ID"
+      disabled
+    />
+    <ng-container *ngIf="userId.invalid && (userId.dirty || userId.touched)">
+      <div *ngIf="userId.errors.userIdExists" class="invalid-feedback">
+        userId Exisits
+      </div>
+      <div *ngIf="userId.errors.required" class="invalid-feedback">
+        userId is required.
+      </div>
+    </ng-container>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="text"
+      class="form-control"
+      [ngClass]="
+        password.invalid && (password.dirty || password.touched)
+          ? 'is-invalid'
+          : ''
+      "
+      id="password"
+      formControlName="password"
+      aria-describedby="passwordHelp"
+      placeholder="Enter Password"
+    />
+    <ng-container
+      *ngIf="password.invalid && (password.dirty || password.touched)"
+    >
+      <div *ngIf="password.errors.passwordExists" class="invalid-feedback">
+        password Exisits
+      </div>
+      <div *ngIf="password.errors.required" class="invalid-feedback">
+        password is required.
+      </div>
+    </ng-container>
+  </div>
+  <div class="form-group">
+    <label for="userName">User Name</label>
+    <input
+      type="text"
+      class="form-control"
+      [ngClass]="
+        userName.invalid && (userName.dirty || userName.touched)
+          ? 'is-invalid'
+          : ''
+      "
+      id="userName"
+      formControlName="userName"
+      aria-describedby="userNameHelp"
+      placeholder="Enter userName"
+    />
+    <ng-container
+      *ngIf="userName.invalid && (userName.dirty || userName.touched)"
+    >
+      <div *ngIf="userName.errors.userNameExists" class="invalid-feedback">
+        userName Exisits
+      </div>
+      <div *ngIf="userName.errors.required" class="invalid-feedback">
+        userName is required.
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Example select</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="role">Role</label>
+    <input
+      type="text"
+      class="form-control"
+      id="role"
+      formControlName="role"
+      aria-describedby="roleHelp"
+      placeholder="Enter role"
+    />
+  </div>
+  <div class="form-group">
+    <label for="group">Group</label>
+    <input
+      type="text"
+      class="form-control"
+      id="group"
+      formControlName="group"
+      aria-describedby="groupHelp"
+      placeholder="Enter group"
+    />
+  </div>
+  <div class="clearfix">
+    <div class="float-right">
+      <button
+        class="btn btn-primary mr-1"
+        type="submit"
+        [disabled]="form.invalid || form.pending"
+      >
+        Submit
+        <span *ngIf="form.get('userId').pending"> (searching)</span>
+      </button>
+      <button class="btn btn-secondary" routerLink="/users-list">list</button>
+    </div>
+  </div>
+</form>
