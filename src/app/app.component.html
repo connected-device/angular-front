@@ -51,11 +51,9 @@
             formControlName="organizationId"
             id="organizationSelect"
           >
-            <option>organization 1</option>
-            <option>organization 2</option>
-            <option>organization 3</option>
-            <option>organization 4</option>
-            <option>organization 5</option>
+            <option *ngFor="let organization of organizations">
+              {{ organization.organizationName }}</option
+            >
           </select>
         </div>
 

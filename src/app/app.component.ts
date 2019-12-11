@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { OrganizationsService } from "./organizations/organizations-services/organizations.service";
 import { timer } from "rxjs";
 import { take } from "rxjs/operators";
 
@@ -14,9 +15,13 @@ export class AppComponent implements OnInit {
    *
    */
 
+  organizations: Object;
   public form: FormGroup;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private organizationService: OrganizationsService
+  ) {
     // super();
     this.form = new FormGroup(
       {
@@ -27,7 +32,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.router.navigateByUrl("/users-edit/5dee52d07f7dc47a3a48f41e");
+    // this.router.navigateByUrl("/users-edit/5dee52d07f7dc47a3a48f41e");
+    this.router.navigateByUrl("/users-list");
 
     // timer(3000000, 2000)
     //   .subscribe(x => {
@@ -42,6 +48,13 @@ export class AppComponent implements OnInit {
     //       this.router.navigateByUrl('/users');
     //     }
     //   })
+    this.list();
   }
   title = "angular-client";
+
+  list() {
+    this.organizationService.getOrganizations().subscribe(data => {
+      this.organizations = data;
+    });
+  }
 }

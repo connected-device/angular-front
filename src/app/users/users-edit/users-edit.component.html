@@ -115,7 +115,7 @@
       <button
         class="btn btn-primary mr-1"
         type="submit"
-        [disabled]="form.invalid || form.pending"
+        [disabled]="form.invalid || form.pending || !form.dirty"
       >
         Submit
         <span *ngIf="form.get('userId').pending"> (searching)</span>
