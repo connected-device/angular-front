@@ -2,30 +2,30 @@ import { Injectable } from "@angular/core";
 import { AbstractControl, AsyncValidatorFn } from "@angular/forms";
 import { Observable, timer } from "rxjs";
 import { map, switchMap } from "rxjs/operators";
-import { UsersService } from "../users-services/users.service";
+import { OrganizationsService } from "../organizations-services/organizations.service";
 
 @Injectable({
   providedIn: "root"
 })
-export class UserValidators {
-  constructor(private usersService: UsersService) {}
+export class OrganizationValidators {
+  constructor(private organizationsService: OrganizationsService) {}
 
-  searchUser(userId: string) {
+  searchOrganization(organizationId: string) {
     return timer(100).pipe(
       switchMap(() => {
-        return this.usersService.findByUserId(userId);
+        return this.organizationsService.findByOrganizationId(organizationId);
       })
     );
   }
 
-  userValidator(): AsyncValidatorFn {
+  organizationValidator(): AsyncValidatorFn {
     return (
       control: AbstractControl
     ): Observable<{ [key: string]: any } | null> => {
-      return this.searchUser(control.value).pipe(
+      return this.searchOrganization(control.value).pipe(
         map((res: Array<object>) => {
           if (res.length) {
-            return { userIdExists: true };
+            return { organizationIdExists: true };
           }
         })
       );

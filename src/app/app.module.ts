@@ -5,6 +5,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+
+// import { UsersModule } from "./users/users.module";
 import { UsersListComponent } from "./users/users-list/users-list.component";
 import { UsersAddComponent } from "./users/users-add/users-add.component";
 import { UsersEditComponent } from "./users/users-edit/users-edit.component";
@@ -17,10 +19,10 @@ import { OrganizationsEditComponent } from "./organizations/organizations-edit/o
     AppComponent,
     UsersListComponent,
     UsersAddComponent,
+    UsersEditComponent,
     OrganizationsListComponent,
     OrganizationsAddComponent,
-    OrganizationsEditComponent,
-    UsersEditComponent
+    OrganizationsEditComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,7 @@ import { OrganizationsEditComponent } from "./organizations/organizations-edit/o
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+    // UsersModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { UsersService } from "../users-services/users.service";
-import { UserValidators } from "../users-valitators/user-validator";
+import { UsersValidators } from "../users-valitators/users-validator";
 import { environment } from "./../../../environments/environment";
 
 @Component({
@@ -17,7 +17,7 @@ export class UsersAddComponent {
     // private auth: AuthService,
     private router: Router,
     private userService: UsersService,
-    private service: UserValidators
+    private service: UsersValidators
   ) {
     this.form = new FormGroup(
       {

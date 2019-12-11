@@ -1,29 +1,41 @@
 import { Component, OnInit } from "@angular/core";
-import { UsersService } from "../../users/users-services/users.service";
+import { OrganizationsService } from "../organizations-services/organizations.service";
 
 @Component({
-  selector: "app-organizations-list",
+  selector: "app-list",
   templateUrl: "./organizations-list.component.html",
   styleUrls: ["./organizations-list.component.scss"]
 })
 export class OrganizationsListComponent implements OnInit {
-  users: Object;
+  organizations: Object;
 
-  constructor(private _http: UsersService) {}
+  constructor(private organizationService: OrganizationsService) {}
 
   ngOnInit() {
     this.list();
   }
 
   list() {
-    this._http.getUsers().subscribe(data => {
-      this.users = data;
+    this.organizationService.getOrganizations().subscribe(data => {
+      this.organizations = data;
     });
   }
 
   delete(id: string) {
-    this._http.deleteUser(id).subscribe(data => {
-      this.list();
-    });
+    if (confirm("Are you sure to delete ?")) {
+      this.organizationService.deleteOrganization(id).subscribe(data => {
+        this.list();
+      });
+    }
   }
+  /**
+ 
+
+clickMethod(name: string) {
+  if(confirm("Are you sure to delete "+name)) {
+    console.log("Implement delete functionality here");
+  }
+}
+
+  */
 }
