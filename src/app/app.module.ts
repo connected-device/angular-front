@@ -1,6 +1,9 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
+import { StoreModule } from "@ngrx/store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -16,11 +19,15 @@ import { OrganizationsModule } from "./organizations/organizations.module";
 // import { OrganizationsAddComponent } from "./organizations/organizations-add/organizations-add.component";
 // import { OrganizationsEditComponent } from "./organizations/organizations-edit/organizations-edit.component";
 import { Page404Component } from "./page404/page404.component";
+import { HomeComponent } from "./home/home.component";
+import { NavbarComponent } from "./navbar/navbar.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    Page404Component
+    Page404Component,
+    HomeComponent,
+    NavbarComponent
     // UsersListComponent,
     // UsersAddComponent,
     // UsersEditComponent,
@@ -32,9 +39,11 @@ import { Page404Component } from "./page404/page404.component";
     UsersModule,
     OrganizationsModule,
     BrowserModule,
-    AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument(),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

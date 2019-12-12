@@ -8,8 +8,14 @@ import { OrganizationsAddComponent } from "./organizations/organizations-add/org
 import { OrganizationsEditComponent } from "./organizations/organizations-edit/organizations-edit.component";
 import { Page404Component } from "./page404/page404.component";
 
+import { HomeComponent } from "./home/home.component";
+
 const routes: Routes = [
-  { path: "", component: UsersListComponent },
+  { path: "", component: HomeComponent },
+  {
+    path: "customers",
+    loadChildren: "../app/customers/customers.module#CustomersModule"
+  },
   { path: "users-list", component: UsersListComponent },
   { path: "users-add", component: UsersAddComponent },
   { path: "users-edit/:_id", component: UsersEditComponent },
