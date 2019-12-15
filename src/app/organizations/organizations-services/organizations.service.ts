@@ -1,39 +1,39 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
-import { Organization } from "../organizations-entity/organizations";
+import { IOrganization } from "../organizations-entity/organizations";
 
 @Injectable({
-  providedIn: "root"
+    providedIn: "root"
 })
 export class OrganizationsService {
-  constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
-  getOrganizations() {
-    return this.http.get(`${environment.apiUrl}/organizations`);
-  }
+    getOrganizations() {
+        return this.http.get<IOrganization[]>(`${environment.apiUrl}/organizations`);
+    }
 
-  getOrganization(_id: string) {
-    return this.http.get<Organization>(
-      `${environment.apiUrl}/organizations/${_id}`
-    );
-  }
+    getOrganization(_id: string) {
+        return this.http.get<IOrganization>(
+            `${environment.apiUrl}/organizations/${_id}`
+        );
+    }
 
-  findByOrganizationId(organizationId: string) {
-    return this.http.get(
-      `${environment.apiUrl}/organizations/findByOrganizationId?organizationId=${organizationId}`
-    );
-  }
+    findByOrganizationId(organizationId: string) {
+        return this.http.get(
+            `${environment.apiUrl}/organizations/findByOrganizationId?organizationId=${organizationId}`
+        );
+    }
 
-  postOrganizations(data: Organization) {
-    return this.http.post(`${environment.apiUrl}/organizations`, data);
-  }
+    postOrganizations(data: IOrganization) {
+        return this.http.post(`${environment.apiUrl}/organizations`, data);
+    }
 
-  putOrganizations(_id: string, data: Organization) {
-    return this.http.put(`${environment.apiUrl}/organizations/${_id}`, data);
-  }
+    putOrganizations(_id: string, data: Organization) {
+        return this.http.put(`${environment.apiUrl}/organizations/${_id}`, data);
+    }
 
-  deleteOrganization(id: string) {
-    return this.http.delete(`${environment.apiUrl}/organizations/${id}`);
-  }
+    deleteOrganization(id: string) {
+        return this.http.delete(`${environment.apiUrl}/organizations/${id}`);
+    }
 }
