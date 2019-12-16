@@ -29,7 +29,7 @@ export class OrganizationsService {
         return this.http.post(`${environment.apiUrl}/organizations`, data);
     }
 
-    putOrganizations(_id: string, data: Organization) {
+    putOrganizations(_id: string, data: IOrganization) {
         return this.http.put(`${environment.apiUrl}/organizations/${_id}`, data);
     }
 
