@@ -68,4 +68,11 @@ export class AppComponent implements OnInit {
   //     this.form.controls.organization.patchValue(this.organizations[2]);
   //   });
   // }
+
+  onChange(event) {
+    // console.log("event : ", event);
+    let organization = this.form.controls.organization.value;
+    console.log("selected organization--->", organization);
+    this.appService.organizationId = organization.organizationId;
+  }
 }
