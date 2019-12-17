@@ -6,8 +6,8 @@
             <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
                 <div class="form-group">
                     <label for="organizationSelect">Organization</label>
-                    <select class="form-control" formControlName="organizationId" id="organizationSelect">
-                        <option *ngFor="let organization of organizations">
+                    <select class="form-control" formControlName="organization" id="organizationSelect">
+                        <option [ngValue]="organization" *ngFor="let organization of organizations">
                             {{ organization.organizationName }}</option>
                     </select>
                 </div>
