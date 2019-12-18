@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UsersService } from "../users-services/users.service";
+import { UserPreferencesService } from "../../user-preferences.service";
 
 @Component({
   selector: "app-list",
@@ -9,7 +10,10 @@ import { UsersService } from "../users-services/users.service";
 export class UsersListComponent implements OnInit {
   users: Object;
 
-  constructor(private userService: UsersService) {}
+  constructor(
+    private userService: UsersService,
+    private userPreferenceService: UserPreferencesService
+  ) {}
 
   ngOnInit() {
     this.list();
@@ -28,6 +32,14 @@ export class UsersListComponent implements OnInit {
       });
     }
   }
+
+  get colour(): string {
+    return this.userPreferenceService.colourPreference;
+  }
+  set colour(value: string) {
+    this.userPreferenceService.colourPreference = value;
+  }
+
   /**
  
 

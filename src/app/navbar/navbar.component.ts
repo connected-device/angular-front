@@ -6,9 +6,14 @@ import { AppService } from "../app.service";
   styleUrls: ["./navbar.component.scss"]
 })
 export class NavbarComponent implements OnInit {
-  organizationId = "";
+  // organizationId = "";
   constructor(private appService: AppService) {
-    this.organizationId = appService.organizationId;
+    // this.organizationId = appService.shareData.organizationId;
+  }
+
+  get organizationId() {
+    console.log("this.appSErvice.shareData: ", this.appService.shareData);
+    return this.appService.shareData.ogranizationId;
   }
 
   ngOnInit() {}

@@ -6,7 +6,7 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
 import { UsersModule } from "./users/users.module";
@@ -39,6 +39,7 @@ import { NavbarComponent } from "./navbar/navbar.component";
     UsersModule,
     OrganizationsModule,
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot({}),

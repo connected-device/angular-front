@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { OrganizationsService } from "./organizations/organizations-services/organizations.service";
 import { IOrganization } from "./organizations/organizations-entity/organizations";
 import { AppService } from "./app.service";
+import { UserPreferencesService } from "./user-preferences.service";
 import { timer } from "rxjs";
 import { take } from "rxjs/operators";
 
@@ -17,9 +18,10 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private organizationService: OrganizationsService,
+    private userPreferenceService: UserPreferencesService,
     private appService: AppService
   ) {
-    appService.organizationId = "aa";
+    appService.shareData = { organizationId: "aa" };
     this.form = new FormGroup(
       {
         organization: new FormControl(null)
@@ -30,7 +32,7 @@ export class AppComponent implements OnInit {
     this.organizationService.getOrganizations().subscribe(data => {
       this.organizations = data;
       const index: number = this.organizations.findIndex(
-        x => x.organizationId === appService.organizationId
+        x => x.organizationId === appService.shareData.organizationId
       );
 
       this.form.controls.organization.patchValue(this.organizations[index]);
@@ -73,6 +75,14 @@ export class AppComponent implements OnInit {
     // console.log("event : ", event);
     let organization = this.form.controls.organization.value;
     console.log("selected organization--->", organization);
-    this.appService.organizationId = organization.organizationId;
+    // this.appService.shareData.organizationId = organization.organizationId;
+    this.appService.shareData = { organizationId: organization.organizationId };
+  }
+
+  get colour(): string {
+    return this.userPreferenceService.colourPreference;
+  }
+  set colour(value: string) {
+    this.userPreferenceService.colourPreference = value;
   }
 }

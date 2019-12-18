@@ -1,50 +1,60 @@
 <app-navbar></app-navbar>
 
 <main role="main" style="" class="mx-3">
-    <div class="row">
-        <div class="col-3">
-            <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-                <div class="form-group">
-                    <label for="organizationSelect">Organization</label>
-                    <select class="form-control" formControlName="organization" id="organizationSelect" (change)="onChange($event)">
-                        <option [ngValue]="organization" *ngFor="let organization of organizations">
-                            {{ organization.organizationName }}</option>
-                    </select>
-                </div>
-            </form>
-
-            <div class="card mb-2">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
-                    </p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
-
-            <div class="card mb-2">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
-                    </p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-3">
+      colour: {{ colour }}<br />
+      <input type="text" [(ngModel)]="colour" [style.background]="colour" />
+      <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+        <div class="form-group">
+          <label for="organizationSelect">Organization</label>
+          <select
+            class="form-control"
+            formControlName="organization"
+            id="organizationSelect"
+            (change)="onChange($event)"
+          >
+            <option
+              [ngValue]="organization"
+              *ngFor="let organization of organizations"
+            >
+              {{ organization.organizationName }}</option
+            >
+          </select>
         </div>
-        <div class="col-9">
-            <router-outlet></router-outlet>
+      </form>
+
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
         </div>
+      </div>
+
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
     </div>
+    <div class="col-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </main>
-
 
 <!-- <div class="mx-3">
     <router-outlet></router-outlet>

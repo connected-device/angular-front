@@ -6,6 +6,9 @@
   </button>
 </div>
 
+colour: {{ colour }}<br />
+<input type="text" [(ngModel)]="colour" [style.background]="colour" />
+
 <table *ngIf="users" class="table">
   <tr class="bg-light">
     <th class="name">_id</th>
