@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     private userPreferenceService: UserPreferencesService,
     private appService: AppService
   ) {
-    appService.shareData = { organizationId: "aa" };
+    // appService.shareData = { organizationId: "aa" };
     this.form = new FormGroup(
       {
         organization: new FormControl(null)
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
     this.organizationService.getOrganizations().subscribe(data => {
       this.organizations = data;
       const index: number = this.organizations.findIndex(
-        x => x.organizationId === appService.shareData.organizationId
+        x => x.organizationId === appService.organizationId
       );
 
       this.form.controls.organization.patchValue(this.organizations[index]);
@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
     let organization = this.form.controls.organization.value;
     console.log("selected organization--->", organization);
     // this.appService.shareData.organizationId = organization.organizationId;
-    this.appService.shareData = { organizationId: organization.organizationId };
+    this.appService.organizationId = organization.organizationId;
   }
 
   get colour(): string {
@@ -84,5 +84,9 @@ export class AppComponent implements OnInit {
   }
   set colour(value: string) {
     this.userPreferenceService.colourPreference = value;
+  }
+
+  get organizationId(): string {
+    return this.appService.organizationId;
   }
 }

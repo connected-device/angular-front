@@ -26,6 +26,7 @@ export class UsersAddComponent {
           Validators.required,
           this.service.userValidator()
         ),
+        organizationId: new FormControl("5df04015caaaac3f3080eb88"),
         password: new FormControl(
           environment.devInputString,
           Validators.required
@@ -54,7 +55,7 @@ export class UsersAddComponent {
   }
 
   onSubmit(data) {
-    // Process checkout data here
+    console.log(data);
     this.userService.postUsers(data).subscribe(() => {
       this.router.navigate(["/users-list"]);
     });

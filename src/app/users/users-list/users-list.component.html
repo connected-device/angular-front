@@ -12,6 +12,7 @@ colour: {{ colour }}<br />
 <table *ngIf="users" class="table">
   <tr class="bg-light">
     <th class="name">_id</th>
+    <th class="name">organizationId</th>
     <th class="name">userId</th>
     <th class="name">password</th>
     <th class="name">name</th>
@@ -21,6 +22,7 @@ colour: {{ colour }}<br />
   </tr>
   <tr *ngFor="let user of users">
     <td class="name">{{ user._id }}</td>
+    <td class="name">{{ user.organizationId }}</td>
     <td class="name">{{ user.userId }}</td>
     <td class="name">{{ user.password }}</td>
     <td class="name">{{ user.userName }}</td>

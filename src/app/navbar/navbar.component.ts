@@ -11,10 +11,14 @@ export class NavbarComponent implements OnInit {
     // this.organizationId = appService.shareData.organizationId;
   }
 
-  get organizationId() {
-    console.log("this.appSErvice.shareData: ", this.appService.shareData);
-    return this.appService.shareData.ogranizationId;
-  }
+  // get organizationId() {
+  //   console.log("this.appSErvice.shareData: ", this.appService.shareData);
+  //   return this.appService.shareData.ogranizationId;
+  // }
 
   ngOnInit() {}
+
+  get organizationId(): string {
+    return this.appService.organizationId;
+  }
 }
