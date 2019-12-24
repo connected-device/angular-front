@@ -1,17 +1,16 @@
 <h2>users list</h2>
 
+<!-- {{ organizationId }} -->
+
 <div>
   <button class="btn btn-secondary float-right my-2" routerLink="/users-add">
     Add
   </button>
 </div>
 
-colour: {{ colour }}<br />
-<input type="text" [(ngModel)]="colour" [style.background]="colour" />
-
 <table *ngIf="users" class="table">
   <tr class="bg-light">
-    <th class="name">_id</th>
+    <!-- <th class="name">_id</th> -->
     <th class="name">organizationId</th>
     <th class="name">userId</th>
     <th class="name">password</th>
@@ -21,7 +20,7 @@ colour: {{ colour }}<br />
     <th class="text-center">-</th>
   </tr>
   <tr *ngFor="let user of users">
-    <td class="name">{{ user._id }}</td>
+    <!-- <td class="name">{{ user._id }}</td> -->
     <td class="name">{{ user.organizationId }}</td>
     <td class="name">{{ user.userId }}</td>
     <td class="name">{{ user.password }}</td>
@@ -29,12 +28,11 @@ colour: {{ colour }}<br />
     <td class="name">{{ user.group }}</td>
     <td class="name">{{ user.role }}</td>
     <td>
-      <button type="button" class="btn" (click)="delete(user._id)">
-        Delete
-      </button>
-      <a [title]="'details'" [routerLink]="['/users-edit', user._id]">
-        Edit
-      </a>
+      <a [title]="'details'" (click)="delete(user._id)" [routerLink]=""
+        >Delete</a
+      >
+      <small class="text-muted"> | </small>
+      <a [title]="'details'" [routerLink]="['/users-edit', user._id]">Edit</a>
     </td>
   </tr>
 </table>

@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { UsersService } from "../users-services/users.service";
 import { UsersValidators } from "../users-valitators/users-validator";
 import { environment } from "./../../../environments/environment";
+import { AppService } from "../../app.service";
 
 @Component({
   selector: "app-users-add",
@@ -16,6 +17,7 @@ export class UsersAddComponent {
   constructor(
     // private auth: AuthService,
     private router: Router,
+    private appService: AppService,
     private userService: UsersService,
     private service: UsersValidators
   ) {
@@ -26,7 +28,8 @@ export class UsersAddComponent {
           Validators.required,
           this.service.userValidator()
         ),
-        organizationId: new FormControl("5df04015caaaac3f3080eb88"),
+        // organizationId: new FormControl("5df04015caaaac3f3080eb88"),
+        organizationId: new FormControl(this.organizationId),
         password: new FormControl(
           environment.devInputString,
           Validators.required
@@ -52,6 +55,10 @@ export class UsersAddComponent {
 
   get password() {
     return this.form.get("password");
+  }
+
+  get organizationId(): string {
+    return this.appService.organizationId;
   }
 
   onSubmit(data) {

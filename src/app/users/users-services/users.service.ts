@@ -9,8 +9,10 @@ import { User } from "../users-entity/user";
 export class UsersService {
   constructor(private http: HttpClient) {}
 
-  getUsers() {
-    return this.http.get(`${environment.apiUrl}/users`);
+  getUsers(organizationId: string) {
+    return this.http.get(
+      `${environment.apiUrl}/users?organizationId=${organizationId}`
+    );
   }
 
   getUser(_id: string) {

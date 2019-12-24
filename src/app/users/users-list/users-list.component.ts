@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UsersService } from "../users-services/users.service";
-import { UserPreferencesService } from "../../user-preferences.service";
+import { AppService } from "../../app.service";
 
 @Component({
   selector: "app-list",
@@ -12,7 +12,7 @@ export class UsersListComponent implements OnInit {
 
   constructor(
     private userService: UsersService,
-    private userPreferenceService: UserPreferencesService
+    private appService: AppService
   ) {}
 
   ngOnInit() {
@@ -20,9 +20,14 @@ export class UsersListComponent implements OnInit {
   }
 
   list() {
-    this.userService.getUsers().subscribe(data => {
-      this.users = data;
-    });
+    // this.userService.getUsers().subscribe(data => {
+    //   this.users = data;
+    // });
+    this.userService
+      .getUsers(this.appService.organizationId)
+      .subscribe(data => {
+        this.users = data;
+      });
   }
 
   delete(id: string) {
@@ -33,21 +38,9 @@ export class UsersListComponent implements OnInit {
     }
   }
 
-  get colour(): string {
-    return this.userPreferenceService.colourPreference;
+  get organizationId(): string {
+    console.log("organizationId called");
+    // this.list();
+    return this.appService.organizationId;
   }
-  set colour(value: string) {
-    this.userPreferenceService.colourPreference = value;
-  }
-
-  /**
- 
-
-clickMethod(name: string) {
-  if(confirm("Are you sure to delete "+name)) {
-    console.log("Implement delete functionality here");
-  }
-}
-
-  */
 }

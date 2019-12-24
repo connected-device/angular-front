@@ -21,4 +21,8 @@ export class NavbarComponent implements OnInit {
   get organizationId(): string {
     return this.appService.organizationId;
   }
+
+  get userRole(): string {
+    return this.appService.userRole;
+  }
 }
