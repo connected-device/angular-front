@@ -1,92 +1,84 @@
 <app-navbar></app-navbar>
 
 <main role="main" style="" class="mx-3">
-  <div class="row">
-    <div class="col-3">
-      <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-        <div class="form-group">
-          <label for="organizationSelect">Organization</label>
-          <select
-            class="form-control"
-            formControlName="organization"
-            id="organizationSelect"
-            (change)="onChange($event)"
-          >
-            <option
-              [ngValue]="organization"
-              *ngFor="let organization of organizations"
-            >
-              {{ organization.organizationName }}</option
-            >
-          </select>
-        </div>
-      </form>
+    <div class="row">
+        <div class="col-3">
+            <form [formGroup]="form">
+                <div class="form-group">
+                    <label for="organizationSelect">Organization</label>
+                    <select class="form-control" formControlName="organization" id="organizationSelect"
+                        (change)="onChange($event)">
+                        <option [ngValue]="organization" *ngFor="let organization of organizations">
+                            {{ organization.organizationName }}</option>
+                    </select>
+                </div>
+            </form>
 
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5 class="card-title">Organizations</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Organizations</h6>
-          <p class="card-text">
-            Organizations
-          </p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">Organizations</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Organizations</h6>
+                    <p class="card-text">
+                        Organizations
+                    </p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
 
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5 class="card-title">Users</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Users</h6>
-          <p class="card-text">
-            Users
-          </p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">Users</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Users</h6>
+                    <p class="card-text">
+                        Users
+                    </p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
 
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5 class="card-title">Schedules</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Schedules</h6>
-          <p class="card-text">
-            Schedules
-          </p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">Schedules</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Schedules</h6>
+                    <p class="card-text">
+                        Schedules
+                    </p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
 
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5 class="card-title">Contents</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Contents</h6>
-          <p class="card-text">
-            Contents
-          </p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">Contents</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Contents</h6>
+                    <p class="card-text">
+                        Contents
+                    </p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
 
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5 class="card-title">Logs</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Logs</h6>
-          <p class="card-text">
-            Logs
-          </p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">Logs</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Logs</h6>
+                    <p class="card-text">
+                        Logs
+                    </p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <div class="col-9">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-
-    <div class="col-9">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
 </main>
 
 <!-- <div class="mx-3">
