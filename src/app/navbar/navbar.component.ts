@@ -18,9 +18,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {}
 
-  get organizationId(): string {
-    return this.appService.organizationId;
-  }
+//   get organizationId(): string {
+//     return this.appService.organizationId;
+//   }
 
   get userRole(): string {
     return this.appService.userRole;

@@ -8,7 +8,7 @@ export class AppService {
     private organizationId = new BehaviorSubject<string>('5df04104caaaac3f3080eb8a');
     cast = this.organizationId.asObservable();
     // public organizationId = '5df04104caaaac3f3080eb8a';
-    // public userRole = 'admin'; // admin, user,
+    public userRole = 'admin'; // admin, user,
     constructor() {
         console.log('New Instance of App Service Created.');
     }
