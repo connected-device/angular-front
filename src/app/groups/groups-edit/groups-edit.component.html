@@ -1,0 +1,49 @@
+<h2>Edit group</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <div class="form-group">
+        <label for="groupId">organization ID</label>
+        <input type="text" class="form-control" [ngClass]="
+        organizationId.invalid && (organizationId.dirty || organizationId.touched) ? 'is-invalid' : ''
+      " id="organizationId" formControlName="organizationId" aria-describedby="emailHelp"
+            placeholder="Enter organization ID" disabled />
+        <ng-container *ngIf="organizationId.invalid && (organizationId.dirty || organizationId.touched)">
+            <div *ngIf="organizationId.errors.organizationIdExists" class="invalid-feedback">
+                organizationId Exisits
+            </div>
+            <div *ngIf="organizationId.errors.required" class="invalid-feedback">
+                organizationId is required.
+            </div>
+        </ng-container>
+    </div>
+    <div class="form-group">
+        <label for="name">Group Name</label>
+        <input type="text" class="form-control" [ngClass]="
+        name.invalid && (name.dirty || name.touched)
+          ? 'is-invalid'
+          : ''
+      " id="name" formControlName="name" aria-describedby="nameHelp" placeholder="Enter name" />
+        <ng-container *ngIf="name.invalid && (name.dirty || name.touched)">
+            <div *ngIf="name.errors.nameExists" class="invalid-feedback">
+                name Exisits
+            </div>
+            <div *ngIf="name.errors.required" class="invalid-feedback">
+                name is required.
+            </div>
+        </ng-container>
+    </div>
+    <div class="form-group">
+        <label for="type">type</label>
+        <input type="text" class="form-control" id="type" formControlName="type" aria-describedby="typeHelp"
+            placeholder="Enter type" />
+    </div>
+    <div class="clearfix">
+        <div class="float-right">
+            <button class="btn btn-primary mr-1" type="submit" [disabled]="form.invalid || form.pending || !form.dirty">
+                Submit
+                <!-- <span *ngIf="form.get('groupId').pending"> (searching)</span> -->
+            </button>
+            <button class="btn btn-secondary" routerLink="/groups-list">list</button>
+        </div>
+    </div>
+</form>
