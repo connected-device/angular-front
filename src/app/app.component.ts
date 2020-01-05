@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { OrganizationsService } from './organizations/organizations-services/organizations.service';
+// import { GroupsService } from './groups/groups-services/groups.service';
 import { IOrganization } from './organizations/organizations-entity/organizations';
 import { AppService } from './app.service';
 import { timer } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { take, filter } from 'rxjs/operators';
+import { IGroup } from './groups/groups-entity/group';
+import { GroupsService } from './groups/groups-services/groups.service';
 
 @Component({
     selector: 'app-root',
@@ -15,84 +18,72 @@ import { take } from 'rxjs/operators';
 export class AppComponent implements OnInit {
     organizations: IOrganization[];
     organizationId: string;
+    // schedulesGroups: IGroup[];
+    schedulesGroups: any;
+    contentsGroups: IGroup[];
+    public form: FormGroup;
+    // title = 'angular-client';
+
     constructor(
         private router: Router,
         private organizationService: OrganizationsService,
+        private groupService: GroupsService,
         private appService: AppService
     ) {
-        // appService.shareData = { organizationId: "aa" };
         this.form = new FormGroup(
             {
                 organization: new FormControl(null)
             },
             { updateOn: 'change' }
-        ); // blur, change, submit
+        );
+
+        // this.appService.organizationId.subscribe(id => {
+        //     this.organizationId = id;
+        //     this.groupService
+        //         .getGroups(this.organizationId)
+        //         .subscribe(data => {
+        //             console.log('data 1', data);
+        //             this.schedulesGroups = data;
+        //         });
+
+        // });
+
+        this.appService.organizationId.subscribe(id => {
+            this.organizationId = id;
+            this.groupService
+                .getGroups(this.organizationId)
+                // .pipe(filter(d => d.type === 'schedules'))
+                .subscribe(data => {
+                    console.log('data 1', data);
+                    // this.schedulesGroups = data;
+                    this.schedulesGroups = data.filter(d => d.type === 'schedules');
+                    this.contentsGroups = data.filter(d => d.type === 'contents');
+                });
+
+        });
+
 
         this.organizationService.getOrganizations().subscribe(data => {
-            this.organizations = data;
-            this.appService.cast.subscribe(id => this.organizationId = id);
-            console.log('this.organizationId', this.organizationId);
-            const index: number = this.organizations.findIndex(
-                x => x._id === this.organizationId
-            );
-            this.form.controls.organization.patchValue(this.organizations[index]);
-            this.router.navigateByUrl('/users-list');
+            this.appService.setOgranizations(data);
+            this.appService.organizations.subscribe(list => {
+                console.log('list', list);
+                this.organizations = list;
+
+                const index: number = this.organizationId ? (this.organizations.findIndex(
+                    x => x._id === this.organizationId
+                )) : 0;
+                this.form.controls.organization.patchValue(this.organizations[index]);
+                this.appService.setOrganizationId(this.organizations[index]._id);
+                this.router.navigateByUrl('/groups-list?type=schedules');
+            });
         });
     }
 
-    public form: FormGroup;
-    title = 'angular-client';
-
     ngOnInit(): void {
-        // this.router.navigateByUrl("/users-edit/5dee52d07f7dc47a3a48f41e");
-        // this.router.navigateByUrl('/users-list');
-        // this.organizationService
-        // this.appService.cast.subscribe(organizationId => {
-        //     this.organizationService.getOrganizations().subscribe(data => {
-        //         this.organizations = data;
-        //         const index: number = this.organizations.findIndex(
-        //             x => x._id === this.appService.cast.subscribe(organizationId => this.organizationId)
-        //         );
-
-        //     });
-
-        // timer(3000000, 2000)
-        //   .subscribe(x => {
-        //     if (x % 3 == 0) {
-        //       console.log('timer: ' + x);
-        //       this.router.navigateByUrl('/');
-        //     } else if (x % 3 == 1) {
-        //       console.log('timer: ' + x);
-        //       this.router.navigateByUrl('/list');
-        //     } else {
-        //       console.log('timer: ' + x);
-        //       this.router.navigateByUrl('/users');
-        //     }
-        //   })
-
-        // this.list();
     }
-
-    // list() {
-    //   this.organizationService.getOrganizations().subscribe(data => {
-    //     this.organizations = data;
-    //     // this.form.controls.orders.patchValue(this.orders[0].id);
-    //     this.form.controls.organization.patchValue(this.organizations[2]);
-    //   });
-    // }
 
     onChange(event) {
         const organization = this.form.controls.organization.value;
         this.appService.setOrganizationId(organization._id);
-        // console.log("event : ", event);
-        // let organization = this.form.controls.organization.value;
-        // console.log('selected organization--->', organization);
-        // // this.appService.shareData.organizationId = organization.organizationId;
-        // this.appService.organizationId = organization._id;
     }
-
-    // get organizationId(): string {
-    //             return this.appService.organizationId;
-    //         }
-
 }

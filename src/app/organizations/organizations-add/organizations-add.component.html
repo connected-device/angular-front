@@ -1,7 +1,7 @@
 <h2>Add organization</h2>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-  <div class="form-group">
+    <!-- <div class="form-group">
     <label for="organizationId">Organization ID</label>
     <input
       type="text"
@@ -48,78 +48,36 @@
         password is required.
       </div>
     </ng-container>
-  </div>
-  <div class="form-group">
-    <label for="organizationName">Organization Name</label>
-    <input
-      type="text"
-      class="form-control"
-      [ngClass]="
-        organizationName.invalid && (organizationName.dirty || organizationName.touched)
+  </div> -->
+    <div class="form-group">
+        <label for="name">Organization Name</label>
+        <input type="text" class="form-control" [ngClass]="
+        name.invalid && (name.dirty || name.touched)
           ? 'is-invalid'
           : ''
-      "
-      id="organizationName"
-      formControlName="organizationName"
-      aria-describedby="organizationNameHelp"
-      placeholder="Enter organizationName"
-    />
-    <ng-container
-      *ngIf="organizationName.invalid && (organizationName.dirty || organizationName.touched)"
-    >
-      <div *ngIf="organizationName.errors.organizationNameExists" class="invalid-feedback">
-        organizationName Exisits
-      </div>
-      <div *ngIf="organizationName.errors.required" class="invalid-feedback">
-        organizationName is required.
-      </div>
-    </ng-container>
-  </div>
-
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Example select</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="role">Role</label>
-    <input
-      type="text"
-      class="form-control"
-      id="role"
-      formControlName="role"
-      aria-describedby="roleHelp"
-      placeholder="Enter role"
-    />
-  </div>
-  <div class="form-group">
-    <label for="group">Group</label>
-    <input
-      type="text"
-      class="form-control"
-      id="group"
-      formControlName="group"
-      aria-describedby="groupHelp"
-      placeholder="Enter group"
-    />
-  </div>
-  <div class="clearfix">
-    <div class="float-right">
-      <button
-        class="btn btn-primary mr-1"
-        type="submit"
-        [disabled]="form.invalid || form.pending"
-      >
-        Submit
-        <span *ngIf="form.get('organizationId').pending"> (searching)</span>
-      </button>
-      <button class="btn btn-secondary" routerLink="/organizations-list">list</button>
+      " id="name" formControlName="name" aria-describedby="nameHelp" placeholder="Enter name" />
+        <ng-container *ngIf="name.invalid && (name.dirty || name.touched)">
+            <div *ngIf="name.errors.nameExists" class="invalid-feedback">
+                name Exisits
+            </div>
+            <div *ngIf="name.errors.required" class="invalid-feedback">
+                name is required.
+            </div>
+        </ng-container>
     </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
   </div>
+
+    <div class="clearfix">
+        <div class="float-right">
+            <button class="btn btn-primary mr-1" type="submit" [disabled]="form.invalid || form.pending">
+                Submit
+                <!-- <span *ngIf="form.get('organizationId').pending"> (searching)</span> -->
+            </button>
+            <button class="btn btn-secondary" routerLink="/organizations-list">list</button>
+        </div>
+    </div>
 </form>

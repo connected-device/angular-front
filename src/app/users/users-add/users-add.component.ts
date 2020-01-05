@@ -21,6 +21,9 @@ export class UsersAddComponent implements OnInit {
         private userService: UsersService,
         private service: UsersValidators
     ) {
+        appService.organizationId.subscribe(id => {
+            this.organizationId = id;
+        });
         this.form = new FormGroup(
             {
                 userId: new FormControl(
@@ -42,7 +45,7 @@ export class UsersAddComponent implements OnInit {
                 role: new FormControl(environment.devInputString, Validators.required)
             },
             { updateOn: 'change' }
-        ); // blur, change, submit
+        );
     }
 
     get userId() {
@@ -58,7 +61,7 @@ export class UsersAddComponent implements OnInit {
     }
     public form: FormGroup;
     ngOnInit(): void {
-        this.appService.cast.subscribe(id => {
+        this.appService.organizationId.subscribe(id => {
             this.organizationId = id;
         });
     }
