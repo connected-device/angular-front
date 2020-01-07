@@ -1,49 +1,68 @@
 <app-navbar></app-navbar>
 
 <main role="main" class="mx-3">
-    <div class="row">
-        <div class="col-3">
-            <form [formGroup]="form">
-                <div class="form-group">
-                    <label for="organizationSelect">Organization</label>
-                    <select class="form-control" formControlName="organization" id="organizationSelect"
-                        (change)="onChange($event)">
-                        <option [ngValue]="organization" *ngFor="let organization of organizations">
-                            {{ organization.name }}</option>
-                    </select>
-                </div>
-            </form>
-
-            <div class="card mb-2">
-                <div class="card-body">
-                    <h5 class="card-title">Schedules</h5>
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item" *ngFor="let schedulesGroup of schedulesGroups">
-                            <a class="nav-link" href="#" href="#" routerLink="/users-list"
-                                [routerLinkActive]="['is-active']"
-                                [routerLinkActiveOptions]="{ exact: true }">{{schedulesGroup.name}}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="card mb-2">
-                <div class="card-body">
-                    <h5 class="card-title">contents</h5>
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item" *ngFor="let contentsGroup of contentsGroups">
-                            <a class="nav-link" href="#" href="#" routerLink="/users-list"
-                                [routerLinkActive]="['is-active']"
-                                [routerLinkActiveOptions]="{ exact: true }">{{contentsGroup.name}}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
+  <div class="row">
+    <div class="col-3">
+      <form [formGroup]="form">
+        <div class="form-group">
+          <label for="organizationSelect">Organization</label>
+          <select
+            class="form-control"
+            formControlName="organization"
+            id="organizationSelect"
+            (change)="onChange($event)"
+          >
+            <option
+              [ngValue]="organization"
+              *ngFor="let organization of organizations"
+            >
+              {{ organization.name }}</option
+            >
+          </select>
         </div>
+      </form>
 
-        <div class="col-9">
-            <router-outlet></router-outlet>
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title">Schedules</h5>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item" *ngFor="let schedulesGroup of schedulesGroups">
+              <a
+                class="nav-link"
+                href="#"
+                href="#"
+                [routerLink]="['schedules', schedulesGroup._id]"
+                [routerLinkActive]="['is-active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >{{ schedulesGroup.name }}</a
+              >
+            </li>
+          </ul>
         </div>
+      </div>
+
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title">contents</h5>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item" *ngFor="let contentsGroup of contentsGroups">
+              <a
+                class="nav-link"
+                href="#"
+                href="#"
+                [routerLink]="['contents', contentsGroup._id]"
+                [routerLinkActive]="['is-active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >{{ contentsGroup.name }}</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
+
+    <div class="col-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </main>
