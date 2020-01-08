@@ -6,6 +6,15 @@
       <form [formGroup]="form">
         <div class="form-group">
           <label for="organizationSelect">Organization</label>
+          <div class="float-right">
+            <a
+              class="small"
+              [title]="'edit'"
+              [routerLink]="['/organizations-list']"
+              >Edit</a
+            >
+          </div>
+          <div class="bg-success">{{ organization?.name }}</div>
           <select
             class="form-control"
             formControlName="organization"
@@ -21,10 +30,19 @@
           </select>
         </div>
       </form>
-
+      <!-- 
       <div class="card mb-2">
         <div class="card-body">
-          <h5 class="card-title">Schedules</h5>
+          <label>Schedules</label>
+          <div class="float-right">
+            <a
+              class="small"
+              [title]="'edit'"
+              routerLink="/groups-list"
+              [queryParams]="{ type: 'schedules' }"
+              >Edit</a
+            >
+          </div>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item" *ngFor="let schedulesGroup of schedulesGroups">
               <a
@@ -43,7 +61,16 @@
 
       <div class="card mb-2">
         <div class="card-body">
-          <h5 class="card-title">contents</h5>
+          <label>contents</label>
+          <div class="float-right">
+            <a
+              class="small"
+              [title]="'edit'"
+              routerLink="/groups-list"
+              [queryParams]="{ type: 'contents' }"
+              >Edit</a
+            >
+          </div>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item" *ngFor="let contentsGroup of contentsGroups">
               <a
@@ -59,6 +86,7 @@
           </ul>
         </div>
       </div>
+       -->
     </div>
 
     <div class="col-9">

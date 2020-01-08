@@ -12,28 +12,33 @@ export class AppService {
   schedulesGroupId: BehaviorSubject<string>;
   contentsGroupId: BehaviorSubject<string>;
   organizations: BehaviorSubject<IOrganization[]>;
+  organization: BehaviorSubject<IOrganization>;
   schedulesGroups: BehaviorSubject<IGroup[]>;
   contentsGroups: BehaviorSubject<IGroup[]>;
 
   constructor() {
     this.organizationId = new BehaviorSubject("");
+    this.organization = new BehaviorSubject(null);
+    this.organizations = new BehaviorSubject([]);
     this.schedulesGroupId = new BehaviorSubject("");
     this.contentsGroupId = new BehaviorSubject("");
-    this.organizations = new BehaviorSubject([]);
     this.schedulesGroups = new BehaviorSubject([]);
     this.contentsGroups = new BehaviorSubject([]);
   }
   setOrganizationId(id) {
     this.organizationId.next(id);
   }
+  setOgranization(organization) {
+    this.organization.next(organization);
+  }
+  setOgranizations(list) {
+    this.organizations.next(list);
+  }
   setSchedulesGroupId(id) {
     this.schedulesGroupId.next(id);
   }
   setContentsGroupId(id) {
     this.contentsGroupId.next(id);
-  }
-  setOgranizations(list) {
-    this.organizations.next(list);
   }
   setSchedulesGroups(list) {
     this.schedulesGroups.next(list);

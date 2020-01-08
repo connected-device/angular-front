@@ -1,36 +1,59 @@
 <h2>organizations list</h2>
 
 <div>
-    <button class="btn btn-secondary float-right my-2" routerLink="/organizations-add">
-        Add
-    </button>
+  <button
+    class="btn btn-secondary float-right my-2"
+    routerLink="/organizations-add"
+  >
+    Add
+  </button>
 </div>
 
 <table *ngIf="organizations" class="table">
-    <tr class="bg-light">
-        <!-- <th class="name">_id</th> -->
-        <th class="name">name</th>
-        <th class="name">description</th>
-        <th class="text-center">-</th>
-    </tr>
-    <tr *ngFor="let organization of organizations">
-        <!-- <td class="name">{{ organization._id }}</td> -->
-        <td class="name">{{ organization.name }}</td>
-        <td class="name">
-            <pre>{{ organization.description }}</pre>
-        </td>
-        <td>
-            <a [title]="'details'" (click)="delete(organization._id)" [routerLink]="">Delete</a>
-            <small class="text-muted"> | </small>
-            <a [title]="'details'" [routerLink]="['/organizations-edit', organization._id]">Edit</a>
-        </td>
-        <!-- <td>
-            <button type="button" class="btn" (click)="delete(organization._id)">
-                Delete
-            </button>
-            <a [title]="'details'" [routerLink]="['/organizations-edit', organization._id]">
-                Edit
-            </a>
-        </td> -->
-    </tr>
+  <tr class="bg-light">
+    <!-- <th class="name">_id</th> -->
+    <th class="name">name</th>
+    <th class="name">description</th>
+    <th class="text-center">-</th>
+  </tr>
+  <tr *ngFor="let organization of organizations">
+    <!-- <td class="name">{{ organization._id }}</td> -->
+    <td class="name">
+      <a [title]="'edit'" (click)="select(organization)">{{
+        organization.name
+      }}</a>
+    </td>
+    <td class="name">
+      <pre>{{ organization.description }}</pre>
+    </td>
+    <td>
+      <!-- <div
+        *ngIf="
+          selectedOrganization && selectedOrganization._id != organization._id
+        "
+      > -->
+      <div
+        *ngIf="
+          !selectedOrganization || selectedOrganization._id != organization._id
+        "
+      >
+        <a [title]="'edit'" (click)="select(organization)" [routerLink]=""
+          >Select</a
+        >
+        <small class="text-muted"> | </small>
+        <a
+          [title]="'details'"
+          (click)="delete(organization._id)"
+          [routerLink]=""
+          >Delete</a
+        >
+        <small class="text-muted"> | </small>
+        <a
+          [title]="'details'"
+          [routerLink]="['/organizations-edit', organization._id]"
+          >Edit</a
+        >
+      </div>
+    </td>
+  </tr>
 </table>
