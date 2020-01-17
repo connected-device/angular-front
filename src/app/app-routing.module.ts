@@ -13,13 +13,19 @@ import { OrganizationsEditComponent } from "./organizations/organizations-edit/o
 import { Page404Component } from "./page404/page404.component";
 import { SchedulesComponent } from "./schedules/schedules.component";
 import { ContentsComponent } from "./contents/contents.component";
+import { LoginComponent } from "./login/login.component";
+import { AdminComponent } from "./admin/admin.component";
+import { AuthGuard } from "./auth.guard";
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
+  // { path: "", component: HomeComponent },
+  { path: "", pathMatch: "full", redirectTo: "login" },
   {
     path: "customers",
     loadChildren: "../app/customers/customers.module#CustomersModule"
   },
+  { path: "login", component: LoginComponent },
+  { path: "admin", component: AdminComponent, canActivate: [AuthGuard] },
   { path: "groups-list", component: GroupsListComponent },
   { path: "groups-add", component: GroupsAddComponent },
   { path: "groups-edit/:_id", component: GroupsEditComponent },
