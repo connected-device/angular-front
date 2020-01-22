@@ -1,19 +1,26 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { AuthService } from "../auth.service";
+import { first } from "rxjs/operators";
+import { User } from "../users/users-entity/user";
+import { UsersService } from "../users/users-services/users.service";
 
-@Component({
-  selector: "app-admin",
-  templateUrl: "./admin.component.html",
-  styleUrls: ["./admin.component.scss"]
-})
+// import { User } from '../_models';
+// import { UserService } from '../_services';
+
+@Component({ templateUrl: "admin.component.html" })
 export class AdminComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+  loading = false;
+  users: User[] = [];
 
-  ngOnInit() {}
+  constructor(private userService: UsersService) {}
 
-  logout() {
-    this.authService.logout();
-    this.router.navigateByUrl("/login");
+  ngOnInit() {
+    this.loading = true;
+    this.userService
+      .getAll("5df04015caaaac3f3080eb88")
+      .pipe(first())
+      .subscribe(users => {
+        this.loading = false;
+        this.users = users;
+      });
   }
 }

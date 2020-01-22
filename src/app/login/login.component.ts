@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     }
     this.authService.login(this.loginForm.value).subscribe(result => {
       localStorage.setItem("ACCESS_TOKEN", (result as any).access_token);
-      this.router.navigateByUrl("/admin");
+      this.router.navigateByUrl("/organizations-list");
     });
   }
 }

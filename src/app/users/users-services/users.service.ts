@@ -1,39 +1,45 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { User } from '../users-entity/user';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "../../../environments/environment";
+import { User } from "../users-entity/user";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: "root"
 })
 export class UsersService {
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-    getUsers(organizationId: string) {
-        return this.http.get(
-            `${environment.apiUrl}/users?organizationId=${organizationId}`
-        );
-    }
+  getAll(organizationId: string) {
+    return this.http.get<User[]>(
+      `${environment.apiUrl}/users?organizationId=${organizationId}`
+    );
+  }
 
-    getUser(_id: string) {
-        return this.http.get<User>(`${environment.apiUrl}/users/${_id}`);
-    }
+  getUsers(organizationId: string) {
+    return this.http.get(
+      `${environment.apiUrl}/users?organizationId=${organizationId}`
+    );
+  }
 
-    findByUserId(userId: string) {
-        return this.http.get(
-            `${environment.apiUrl}/users/findByUserId?userId=${userId}`
-        );
-    }
+  getUser(_id: string) {
+    return this.http.get<User>(`${environment.apiUrl}/users/${_id}`);
+  }
 
-    postUsers(data: User) {
-        return this.http.post(`${environment.apiUrl}/users`, data);
-    }
+  findByUserId(userId: string) {
+    return this.http.get(
+      `${environment.apiUrl}/users/findByUserId?userId=${userId}`
+    );
+  }
 
-    putUsers(_id: string, data: User) {
-        return this.http.put(`${environment.apiUrl}/users/${_id}`, data);
-    }
+  postUsers(data: User) {
+    return this.http.post(`${environment.apiUrl}/users`, data);
+  }
 
-    deleteUser(id: string) {
-        return this.http.delete(`${environment.apiUrl}/users/${id}`);
-    }
+  putUsers(_id: string, data: User) {
+    return this.http.put(`${environment.apiUrl}/users/${_id}`, data);
+  }
+
+  deleteUser(id: string) {
+    return this.http.delete(`${environment.apiUrl}/users/${id}`);
+  }
 }
