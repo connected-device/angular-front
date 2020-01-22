@@ -1,44 +1,23 @@
-<app-navbar></app-navbar>
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/">Home</a>
+        <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </div>
+</nav>
 
 <!-- main app container -->
 <div class="container">
-  <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 </div>
 
-<!-- <main role="main" class="mx-3">
-  <div class="row">
-    <div class="col-3">
-      <form [formGroup]="form">
-        <div class="form-group">
-          <label for="organizationSelect">Organization</label>
-          <div class="float-right">
-            <a
-              class="small"
-              [title]="'edit'"
-              [routerLink]="['/organizations-list']"
-              >Edit</a
-            >
-          </div>
-          <div class="bg-success">{{ organization?.name }}</div>
-          <select
-            class="form-control"
-            formControlName="organization"
-            id="organizationSelect"
-            (change)="onChange($event)"
-          >
-            <option
-              [ngValue]="organization"
-              *ngFor="let organization of organizations"
-            >
-              {{ organization.name }}</option
-            >
-          </select>
-        </div>
-      </form>
-    </div>
-
-    <div class="col-9">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</main> -->
+<!-- credits -->
+<div class="text-center mt-4">
+    <p>
+        <a href="https://jasonwatmore.com/post/2019/08/06/angular-8-role-based-authorization-tutorial-with-example" target="_top">Angular 8 - Role Based Authorization Tutorial with Example</a>
+    </p>
+    <p>
+        <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a>
+    </p>
+</div>

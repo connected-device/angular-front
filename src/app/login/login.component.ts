@@ -1,43 +1,65 @@
 import { Component, OnInit } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
-import { User } from "../user";
-import { AuthService } from "../auth.service";
+import { first } from "rxjs/operators";
 
-@Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"]
-})
+import { AuthenticationService } from "../_services";
+
+@Component({ templateUrl: "login.component.html" })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  isSubmitted = false;
+  loading = false;
+  submitted = false;
+  returnUrl: string;
+  error = "";
 
   constructor(
-    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
-  ) {}
+    private authenticationService: AuthenticationService
+  ) {
+    // redirect to home if already logged in
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(["/"]);
+    }
+  }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ["john", Validators.required],
-      password: ["changeme", Validators.required]
+      username: ["admin", Validators.required],
+      password: ["admin", Validators.required]
     });
+
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
   }
 
-  get formControls() {
+  // convenience getter for easy access to form fields
+  get f() {
     return this.loginForm.controls;
   }
 
-  login() {
-    this.isSubmitted = true;
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     }
-    this.authService.login(this.loginForm.value).subscribe(result => {
-      localStorage.setItem("ACCESS_TOKEN", (result as any).access_token);
-      this.router.navigateByUrl("/organizations-list");
-    });
+
+    this.loading = true;
+    this.authenticationService
+      .login(this.f.username.value, this.f.password.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.error = error;
+          this.loading = false;
+        }
+      );
   }
 }

@@ -1,26 +1,13 @@
-<div class="container">
-    <!-- <div class="jumbotron">
-    <h1 class="display-4">Welcome</h1>
-    <p class="lead">Please seldct your option below</p>
-    <hr class="my-4" />
-    <p class="lead">
-      <a
-        class="btn btn-primary btn-lg"
-        [routerLink]="['customers']"
-        role="button"
-        >Customers</a
-      >
-    </p>
-  </div> -->
-    <h3>Role</h3>
-    <ul>
-        <li>admin: Create organization</li>
-        <li>manager: Manage organization</li>
-        <li>user: limited to contents job, schedule job
-            <ul>
-                <li>contents/schedules create, delete or modify</li>
-
-            </ul>
-        </li>
-    </ul>
+<div class="card mt-4">
+    <h4 class="card-header">Home</h4>
+    <div class="card-body">
+        <p>You're logged in with Angular 8 & JWT!!</p>
+        <p>Your role is: <strong>{{currentUser.role}}</strong>.</p>
+        <p>This page can be accessed by <u>all authenticated users</u>.</p>
+        <p class="mb-1">Current user from secure api end point:</p>
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <ul *ngIf="userFromApi">
+            <li>{{userFromApi.firstName}} {{userFromApi.lastName}}</li>
+        </ul>
+    </div>
 </div>

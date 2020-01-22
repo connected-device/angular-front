@@ -1,58 +1,40 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { StoreModule } from "@ngrx/store";
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+// used to create fake backend
+import { fakeBackendProvider } from './_helpers';
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { Page404Component } from "./page404/page404.component";
-import { HomeComponent } from "./home/home.component";
-import { NavbarComponent } from "./navbar/navbar.component";
+import { AppComponent } from './app.component';
+import { appRoutingModule } from './app.routing';
 
-import { UsersModule } from "./users/users.module";
-import { GroupsModule } from "./groups/groups.module";
-import { OrganizationsModule } from "./organizations/organizations.module";
-import { SchedulesModule } from "./schedules/schedules.module";
-import { ContentsModule } from "./contents/contents.module";
-import { LoginComponent } from "./login/login.component";
-import { AdminComponent } from "./admin/admin.component";
-import { AuthInterceptor } from "./common/auth.interceptor";
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { HomeComponent } from './home';
+import { AdminComponent } from './admin';
+import { LoginComponent } from './login';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    Page404Component,
-    HomeComponent,
-    NavbarComponent,
-    LoginComponent,
-    AdminComponent
-    // UsersListComponent,
-    // UsersAddComponent,
-    // UsersEditComponent,
-    // OrganizationsListComponent,
-    // OrganizationsAddComponent,
-    // OrganizationsEditComponent
-  ],
-  imports: [
-    UsersModule,
-    GroupsModule,
-    OrganizationsModule,
-    SchedulesModule,
-    ContentsModule,
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    StoreModule.forRoot({}),
-    StoreDevtoolsModule.instrument(),
-    AppRoutingModule
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-  ],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        appRoutingModule
+    ],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        AdminComponent,
+        LoginComponent
+    ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+        // provider used to create fake backend
+        fakeBackendProvider
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule {}
+
+export class AppModule { }
