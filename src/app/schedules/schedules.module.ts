@@ -9,9 +9,10 @@ import { SettingsEditComponent } from './settings-edit/settings-edit.component';
 import { DevicesEditComponent } from './devices-edit/devices-edit.component';
 import { DevicesListComponent } from './devices-list/devices-list.component';
 import { DevicesAddComponent } from './devices-add/devices-add.component';
+import { OrganizationsModule } from '../organizations/organizations.module';
 
 @NgModule({
-  declarations: [SchedulesComponent, SchedulesListComponent, SchedulesAddComponent, SchedulesEditComponent, SettingsViewComponent, SettingsEditComponent, DevicesEditComponent, DevicesListComponent, DevicesAddComponent],
-  imports: [CommonModule]
+    declarations: [SchedulesComponent, SchedulesListComponent, SchedulesAddComponent, SchedulesEditComponent, SettingsViewComponent, SettingsEditComponent, DevicesEditComponent, DevicesListComponent, DevicesAddComponent],
+    imports: [CommonModule, OrganizationsModule]
 })
-export class SchedulesModule {}
+export class SchedulesModule { }

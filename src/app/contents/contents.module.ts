@@ -4,14 +4,15 @@ import { ContentsComponent } from "./contents.component";
 import { ContentsAddComponent } from "./contents-add/contents-add.component";
 import { ContentsListComponent } from "./contents-list/contents-list.component";
 import { ContentsEditComponent } from "./contents-edit/contents-edit.component";
+import { OrganizationsModule } from '../organizations/organizations.module';
 
 @NgModule({
-  declarations: [
-    ContentsComponent,
-    ContentsAddComponent,
-    ContentsListComponent,
-    ContentsEditComponent
-  ],
-  imports: [CommonModule]
+    declarations: [
+        ContentsComponent,
+        ContentsAddComponent,
+        ContentsListComponent,
+        ContentsEditComponent
+    ],
+    imports: [CommonModule, OrganizationsModule]
 })
-export class ContentsModule {}
+export class ContentsModule { }
