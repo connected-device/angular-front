@@ -1,0 +1,22 @@
+<div>
+    <p>if User, use auth data</p>
+    <p>if Admin, look local-storage data, if not, use 1st items of organizations array, save to local storage</p>
+</div>
+
+<div class="form-group">
+    <label for="organizationSelect">Organization select</label>
+    <!-- <select class="form-control" id="organizationSelect" #mySelect (change)="onOptionsSelected(mySelect.value)">
+        <option class="option" *ngFor="let option of dropDownData" [value]="option.seo_val"> {{option.text_val}}
+        </option>
+
+    </select> -->
+
+    <select class="form-control" id="organizationSelect" #mySelect (change)="onOptionsSelected(mySelect.value)">
+        <option class="option" *ngFor="let organization of organizations" [value]="organization._id">
+            {{organization.name}}
+        </option>
+
+    </select>
+
+
+</div>
