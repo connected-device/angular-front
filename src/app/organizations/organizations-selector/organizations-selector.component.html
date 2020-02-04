@@ -3,6 +3,21 @@
     <p>if Admin, look local-storage data, if not, use 1st items of organizations array, save to local storage</p>
 </div>
 
+
+<div class="dropdown">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Dropdown link
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+</div>
+
+
 <div class="form-group">
     <label for="organizationSelect">Organization select</label>
     <!-- <select class="form-control" id="organizationSelect" #mySelect (change)="onOptionsSelected(mySelect.value)">
@@ -15,6 +30,7 @@
         <option class="option" *ngFor="let organization of organizations" [value]="organization._id">
             {{organization.name}}
         </option>
+        <option disabled selected hidden>manage</option>
 
     </select>
 
