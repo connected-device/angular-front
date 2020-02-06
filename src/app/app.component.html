@@ -1,34 +1,37 @@
 <!-- nav -->
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/">Home</a>
-        <a class="nav-item nav-link" routerLink="/organizations-list">organizations-list</a>
-        <a class="nav-item nav-link" routerLink="/groups-list">groups-list</a>
-        <a class="nav-item nav-link" routerLink="/users-list">users-list</a>
-        <a class="nav-item nav-link" routerLink="/schedules/1">schedules/1</a>
-        <a class="nav-item nav-link" routerLink="/contents/1">contents/1</a>
-        <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
-    </div>
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" routerLink="/">Home</a>
+    <a class="nav-item nav-link" routerLink="/organizations-list"
+      >organizations-list</a
+    >
+    <a class="nav-item nav-link" routerLink="/groups-list">groups-list</a>
+    <a class="nav-item nav-link" routerLink="/users-list">users-list</a>
+    <a class="nav-item nav-link" routerLink="/schedules/1">schedules/1</a>
+    <a class="nav-item nav-link" routerLink="/contents/1">contents/1</a>
+    <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
+    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+  </div>
 </nav>
+<!-- <div class="container">{{ currentUser | json }}</div>
 
-{{currentUser|json}}
-
-<app-organizations-selector></app-organizations-selector>
-
+<app-organizations-selector></app-organizations-selector> -->
 
 <!-- main app container -->
 <div class="container">
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>
 
 <!-- credits -->
 <div class="text-center mt-4">
-    <p>
-        <a href="https://jasonwatmore.com/post/2019/08/06/angular-8-role-based-authorization-tutorial-with-example"
-            target="_top">Angular 8 - Role Based Authorization Tutorial with Example</a>
-    </p>
-    <p>
-        <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a>
-    </p>
+  <p>
+    <a
+      href="https://jasonwatmore.com/post/2019/08/06/angular-8-role-based-authorization-tutorial-with-example"
+      target="_top"
+      >Angular 8 - Role Based Authorization Tutorial with Example</a
+    >
+  </p>
+  <p>
+    <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a>
+  </p>
 </div>
