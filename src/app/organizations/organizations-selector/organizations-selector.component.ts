@@ -11,6 +11,10 @@ export class OrganizationsSelectorComponent implements OnInit {
 
     dropDownData: any;
     organizations: Organization[];
+
+    selectedValue: string = '-- select value --';
+    selectedId: string;
+
     constructor(private organizationsService: OrganizationsService) { }
 
     ngOnInit() {
@@ -28,7 +32,12 @@ export class OrganizationsSelectorComponent implements OnInit {
         console.log("the selected value is " + value);
     }
 
-
+ 
+    // On-Click Method on dropdown control
+    selectValue(organization: Organization) {
+       this.selectedValue = organization.name;
+       this.selectedId = organization._id;
+    }
 
 
 }

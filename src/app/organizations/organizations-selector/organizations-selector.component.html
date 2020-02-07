@@ -31,7 +31,7 @@
     >
       <div class="d-flex justify-content-between">
         <div>
-          left aad dsafsdafs sdaf
+          {{ selectedValue }}
         </div>
         <div>
           <i class="fas fa-caret-down"></i>
@@ -39,35 +39,31 @@
       </div>
     </a>
 
-    <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
+    <div class="dropdown-menu w-100 p-0" aria-labelledby="dropdownMenuLink">
+      <a
+        class="dropdown-item"
+        aria-checked="true"
+        *ngFor="let organization of organizations"
+        (click)="selectValue(organization)"
+      >
+        <svg
+          viewBox="0 0 12 16"
+          version="1.1"
+          width="12"
+          height="16"
+          aria-hidden="true"
+          [ngStyle]="{'visibility': (organization._id==selectedId) ? 'visible' : 'hidden'}"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"
+          ></path>
+        </svg>
+        {{ organization.name }}</a
+      >
+      <a class="dropdown-item bg-secondary" ><i class="fas fa-cog fa-lg"></i> Manage organization</a>
+      <a class="dropdown-item bg-secondary" ><i class="fas fa-plus fa-lg"></i> New organization</a>
     </div>
   </div>
 
-  <div class="form-group">
-    <label for="organizationSelect">Organization select</label>
-    <!-- <select class="form-control" id="organizationSelect" #mySelect (change)="onOptionsSelected(mySelect.value)">
-            <option class="option" *ngFor="let option of dropDownData" [value]="option.seo_val"> {{option.text_val}}
-            </option>
-    
-        </select> -->
-
-    <select
-      class="form-control"
-      id="organizationSelect"
-      #mySelect
-      (change)="onOptionsSelected(mySelect.value)"
-    >
-      <option
-        class="option"
-        *ngFor="let organization of organizations"
-        [value]="organization._id"
-      >
-        {{ organization.name }}
-      </option>
-      <option disabled selected hidden>manage</option>
-    </select>
-  </div>
 </div>
