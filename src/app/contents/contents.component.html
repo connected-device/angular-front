@@ -1,6 +1,11 @@
-<h2>contents works!</h2>
-<app-organizations-selector></app-organizations-selector>
-
-<app-contents-list></app-contents-list>
-<app-contents-add></app-contents-add>
-<app-contents-edit></app-contents-edit>
+<div class="row">
+  <div class="col-md-3">
+    <app-sidebar [mode]="'contents'"></app-sidebar>
+  </div>
+  <div class="col-md-9 bg-secondary">
+    <h2>contents works!</h2>
+    <app-contents-list></app-contents-list>
+    <app-contents-add></app-contents-add>
+    <app-contents-edit></app-contents-edit>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { GroupsService } from "../groups-services/groups.service";
 import { AppService } from "../../app.service";
@@ -10,6 +10,7 @@ import { Subscription } from "rxjs";
   styleUrls: ["./groups-list.component.scss"]
 })
 export class GroupsListComponent implements OnInit, OnDestroy {
+  @Input() mode: string;
   groups: object;
   organizationId: string;
   private subscriptions = new Subscription();

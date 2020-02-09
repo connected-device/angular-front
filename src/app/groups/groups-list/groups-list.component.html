@@ -1,29 +1,35 @@
-<h2>groups list</h2>
+<h2>groups list - {{ mode }}</h2>
 
 <!-- {{ organizationId }} -->
 
 <div>
-    <button class="btn btn-secondary float-right my-2" routerLink="/groups-add" [queryParams]="{ type: type }">
-        Add
-    </button>
+  <button
+    class="btn btn-secondary float-right my-2"
+    routerLink="/groups-add"
+    [queryParams]="{ type: type }"
+  >
+    Add
+  </button>
 </div>
 <table *ngIf="groups" class="table">
-    <tr class="bg-light">
-        <!-- <th class="name">_id</th> -->
-        <th class="name">organizationId</th>
-        <th class="name">name</th>
-        <th class="name">type</th>
-        <th class="text-center">-</th>
-    </tr>
-    <tr *ngFor="let group of groups">
-        <!-- <td class="name">{{ group._id }}</td> -->
-        <td class="name">{{ group.organizationId }}</td>
-        <td class="name">{{ group.name }}</td>
-        <td class="name">{{ group.type }}</td>
-        <td>
-            <a [title]="'details'" (click)="delete(group._id)" [routerLink]="">Delete</a>
-            <small class="text-muted"> | </small>
-            <a [title]="'details'" [routerLink]="['/groups-edit', group._id]">Edit</a>
-        </td>
-    </tr>
+  <tr class="bg-light">
+    <!-- <th class="name">_id</th> -->
+    <th class="name">organizationId</th>
+    <th class="name">name</th>
+    <th class="name">type</th>
+    <th class="text-center">-</th>
+  </tr>
+  <tr *ngFor="let group of groups">
+    <!-- <td class="name">{{ group._id }}</td> -->
+    <td class="name">{{ group.organizationId }}</td>
+    <td class="name">{{ group.name }}</td>
+    <td class="name">{{ group.type }}</td>
+    <td>
+      <a [title]="'details'" (click)="delete(group._id)" [routerLink]=""
+        >Delete</a
+      >
+      <small class="text-muted"> | </small>
+      <a [title]="'details'" [routerLink]="['/groups-edit', group._id]">Edit</a>
+    </td>
+  </tr>
 </table>

@@ -3,36 +3,34 @@
 <!-- {{ organizationId }} -->
 
 <div>
-  <button class="btn btn-secondary float-right my-2" routerLink="/users-add">
-    Add
-  </button>
+    <button class="btn btn-secondary float-right my-2" routerLink="/users-add">
+        Add
+    </button>
 </div>
 
 <table *ngIf="users" class="table">
-  <tr class="bg-light">
-    <!-- <th class="name">_id</th> -->
-    <th class="name">organizationId</th>
-    <th class="name">userId</th>
-    <th class="name">password</th>
-    <th class="name">name</th>
-    <th class="name">group</th>
-    <th class="name">role</th>
-    <th class="text-center">-</th>
-  </tr>
-  <tr *ngFor="let user of users">
-    <!-- <td class="name">{{ user._id }}</td> -->
-    <td class="name">{{ user.organizationId }}</td>
-    <td class="name">{{ user.userId }}</td>
-    <td class="name">{{ user.password }}</td>
-    <td class="name">{{ user.userName }}</td>
-    <td class="name">{{ user.group }}</td>
-    <td class="name">{{ user.role }}</td>
-    <td>
-      <a [title]="'details'" (click)="delete(user._id)" [routerLink]=""
-        >Delete</a
-      >
-      <small class="text-muted"> | </small>
-      <a [title]="'details'" [routerLink]="['/users-edit', user._id]">Edit</a>
-    </td>
-  </tr>
+    <tr class="bg-light">
+        <!-- <th class="name">_id</th> -->
+        <th class="name">organizationId</th>
+        <th class="name">userId</th>
+        <th class="name">password</th>
+        <th class="name">name</th>
+        <th class="name">group</th>
+        <th class="name">role</th>
+        <th class="text-center">-</th>
+    </tr>
+    <tr *ngFor="let user of users;">
+        <!-- <td class="name">{{ user._id }}</td> -->
+        <td class="name">{{ user.organizationId }}</td>
+        <td class="name">{{ user.userId }}</td>
+        <td class="name">{{ user.password }}</td>
+        <td class="name">{{ user.userName }}</td>
+        <td class="name">{{ user.group }}</td>
+        <td class="name">{{ user.role }}</td>
+        <td>
+            <a [title]="'details'" (click)="delete(user._id)" [routerLink]="">Delete</a>
+            <small class="text-muted"> | </small>
+            <a [title]="'details'" [routerLink]="['/users-edit', user._id]">Edit</a>
+        </td>
+    </tr>
 </table>

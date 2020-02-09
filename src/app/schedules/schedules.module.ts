@@ -11,6 +11,7 @@ import { DevicesListComponent } from "./devices-list/devices-list.component";
 import { DevicesAddComponent } from "./devices-add/devices-add.component";
 import { OrganizationsModule } from "../organizations/organizations.module";
 import { GroupsModule } from "../groups/groups.module";
+import { SidebarModule } from "../sidebar/sidebar.module";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,6 @@ import { GroupsModule } from "../groups/groups.module";
     DevicesListComponent,
     DevicesAddComponent
   ],
-  imports: [CommonModule, OrganizationsModule, GroupsModule]
+  imports: [CommonModule, OrganizationsModule, GroupsModule, SidebarModule]
 })
 export class SchedulesModule {}
