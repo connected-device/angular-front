@@ -1,4 +1,4 @@
-<h2>groups list - {{ mode }}</h2>
+<!-- <h2>groups list - {{ mode }}</h2> -->
 
 <!-- {{ organizationId }} -->
 
@@ -14,14 +14,14 @@
 <table *ngIf="groups" class="table">
   <tr class="bg-light">
     <!-- <th class="name">_id</th> -->
-    <th class="name">organizationId</th>
+    <!-- <th class="name">organizationId</th> -->
     <th class="name">name</th>
     <th class="name">type</th>
     <th class="text-center">-</th>
   </tr>
   <tr *ngFor="let group of groups">
     <!-- <td class="name">{{ group._id }}</td> -->
-    <td class="name">{{ group.organizationId }}</td>
+    <!-- <td class="name">{{ group.organizationId }}</td> -->
     <td class="name">{{ group.name }}</td>
     <td class="name">{{ group.type }}</td>
     <td>
